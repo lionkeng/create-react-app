@@ -44,6 +44,9 @@ const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
 // makes for a smoother build process.
 const shouldInlineRuntimeChunk = process.env.INLINE_RUNTIME_CHUNK !== 'false';
 
+// bundle analyzer
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer');
+
 // Check if TypeScript is setup
 const useTypeScript = fs.existsSync(paths.appTsConfig);
 
@@ -628,6 +631,8 @@ module.exports = function(webpackEnv) {
             new RegExp('/[^/]+\\.[^/]+$'),
           ],
         }),
+      // webpack bundle analyzer
+      isEnvDevelopment && new BundleAnalyzerPlugin(),
       // TypeScript type checking
       useTypeScript &&
         new ForkTsCheckerWebpackPlugin({
