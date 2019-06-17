@@ -95,8 +95,8 @@ module.exports = function(
 
   // Setup the script rules
   appPackage.scripts = {
-    start: 'react-scripts start',
-    build: 'react-scripts build',
+    start: 'REACT_APP_VERSION=$npm_package_version react-scripts start',
+    build: 'REACT_APP_VERSION=$npm_package_version react-scripts build',
     test: 'react-scripts test',
     eject: 'react-scripts eject',
   };
